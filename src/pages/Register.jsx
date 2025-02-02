@@ -1,3 +1,4 @@
+// src/pages/Register.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -6,6 +7,7 @@ const Register = () => {
   const [name, setName]         = useState('');
   const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
+  const [isAdmin, setIsAdmin]   = useState(false); // admin registration option
   const [error, setError]       = useState('');
   const [success, setSuccess]   = useState('');
   const navigate                = useNavigate();
@@ -14,11 +16,11 @@ const Register = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    axios.post('/api/auth/signup', { name, email, password })
+    const role = isAdmin ? 'admin' : 'user';
+
+    axios.post('/api/auth/signup', { name, email, password, role })
       .then(response => {
-        // If successful, you can either redirect or display a success message
         setSuccess('Registration successful! Please log in.');
-        // Optionally redirect after a timeout:
         setTimeout(() => navigate('/login'), 2000);
       })
       .catch(err => {
@@ -34,8 +36,19 @@ const Register = () => {
   return (
     <div className="container mt-5">
       <h2>Register</h2>
+      
+      {/* Home button above the form */}
+      <div className="d-flex justify-content-end mb-3">
+        <Link to="/" className="btn btn-primary">Home</Link>
+      </div>
+      
+      <div className="alert alert-info">
+        By default, this form registers a regular user. To register as an admin, check the box below.
+      </div>
+      
       {error && <div className="alert alert-danger">{error}</div>}
       {success && <div className="alert alert-success">{success}</div>}
+      
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name:</label>
@@ -69,6 +82,18 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+        </div>
+        <div className="form-check mb-3">
+          <input 
+            type="checkbox"
+            id="adminCheck"
+            className="form-check-input"
+            checked={isAdmin}
+            onChange={(e) => setIsAdmin(e.target.checked)}
+          />
+          <label className="form-check-label" htmlFor="adminCheck">
+            Register as Admin
+          </label>
         </div>
         <button type="submit" className="btn btn-primary">Register</button>
       </form>

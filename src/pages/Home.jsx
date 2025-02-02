@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import EventCard from '../components/EventCard';
+import UserStatus from '../components/UserStatus';
 
 const Home = () => {
   const [events, setEvents] = useState([]);
@@ -13,7 +14,6 @@ const Home = () => {
     axios.get('/api/events')
       .then(response => {
         console.log("API response for events:", response.data);
-        // Check if the API response is an array or if it's nested in an object
         if (Array.isArray(response.data)) {
           setEvents(response.data);
         } else if (response.data.events && Array.isArray(response.data.events)) {
@@ -35,7 +35,10 @@ const Home = () => {
 
   return (
     <div className="container mx-auto p-4">
-      {/* Header with page title and navigation buttons */}
+      {/* Display login status on the home page */}
+      <UserStatus />
+
+      {/* Header area with title and navigation buttons */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="text-2xl font-bold">Upcoming Events</h1>
         <div>

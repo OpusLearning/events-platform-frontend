@@ -1,3 +1,4 @@
+// src/pages/Login.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -13,10 +14,8 @@ const Login = () => {
     setError('');
     axios.post('/api/auth/login', { email, password })
       .then(response => {
-        // Assuming response contains token and user data
         localStorage.setItem('userToken', response.data.token);
-        // Optionally, store user details too
-        alert(`Welcome, ${response.data.user.name}!`);
+        alert(`Welcome, ${response.data.user.name || response.data.user.email || 'User'}!`);
         navigate('/admin');
       })
       .catch(err => {
@@ -32,7 +31,14 @@ const Login = () => {
   return (
     <div className="container mt-5">
       <h2>Login</h2>
+      
+      {/* Home button above the form */}
+      <div className="d-flex justify-content-end mb-3">
+        <Link to="/" className="btn btn-primary">Home</Link>
+      </div>
+      
       {error && <div className="alert alert-danger">{error}</div>}
+      
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email:</label>
