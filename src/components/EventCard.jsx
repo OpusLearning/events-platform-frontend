@@ -1,3 +1,4 @@
+// src/components/EventCard.jsx
 import React from 'react';
 
 const EventCard = ({ event, onSignUpSuccess }) => {
@@ -7,7 +8,6 @@ const EventCard = ({ event, onSignUpSuccess }) => {
       alert('Please log in to sign up for an event.');
       return;
     }
-    // Example sign-up functionality; adjust API call as needed
     fetch('/api/events/signup', {
       method: 'POST',
       headers: {
@@ -41,7 +41,7 @@ const EventCard = ({ event, onSignUpSuccess }) => {
       {event.imageUrl ? (
         <img src={event.imageUrl} className="card-img-top" alt={event.title} />
       ) : (
-        <img src="/placeholder-image.jpg" className="card-img-top" alt="Placeholder" />
+        <img src="/eventsplatform.webp" className="card-img-top" alt="Placeholder" />
       )}
       <div className="card-body">
         <h5 className="card-title">{event.title}</h5>

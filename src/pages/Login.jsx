@@ -14,9 +14,16 @@ const Login = () => {
     setError('');
     axios.post('/api/auth/login', { email, password })
       .then(response => {
-        localStorage.setItem('userToken', response.data.token);
-        alert(`Welcome, ${response.data.user.name || response.data.user.email || 'User'}!`);
-        navigate('/admin');
+        const { token, user } = response.data;
+        localStorage.setItem('userToken', token);
+        alert(`Welcome, ${user.name || user.email || 'User'}!`);
+
+        // Navigate based on the user's role:
+        if (user.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/my-events');
+        }
       })
       .catch(err => {
         console.error(err);
@@ -31,14 +38,10 @@ const Login = () => {
   return (
     <div className="container mt-5">
       <h2>Login</h2>
-      
-      {/* Home button above the form */}
       <div className="d-flex justify-content-end mb-3">
         <Link to="/" className="btn btn-primary">Home</Link>
       </div>
-      
       {error && <div className="alert alert-danger">{error}</div>}
-      
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email:</label>

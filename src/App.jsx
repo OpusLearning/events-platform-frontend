@@ -5,17 +5,23 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
 import CalendarSuccess from './pages/CalendarSuccess';
+import MyEvents from './pages/MyEvents';
 import NotFound from './pages/NotFound';
-import UserStatus from './components/UserStatus'; // Import the UserStatus component
 
 function App() {
   return (
     <div>
-      <header className="bg-primary text-white p-3">
-        <div className="container d-flex justify-content-between align-items-center">
-          <h1>Events Platform</h1>
-          {/* Display the current login status */}
-          {/* < UserStatus /> */}
+      <header style={{ backgroundColor: "#020333", color: "white" }} className="p-3">
+        <div className="container d-flex align-items-center">
+          {/*<img
+            src="/eventsnew.webp"
+            alt="Events Platform Logo"
+            style={{ height: '75px', marginRight: '15px' }}  
+          />*/}
+          <h1 className="mb-0" style={{ fontSize: '1.75rem' }}>
+            <span style={{ fontWeight: 'bold' }}>eventsplatform</span>
+            <span style={{ fontWeight: '300' }}>.online</span>
+          </h1>
         </div>
       </header>
 
@@ -26,6 +32,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/calendar-success" element={<CalendarSuccess />} />
+          <Route path="/my-events" element={<MyEvents />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
