@@ -1,6 +1,7 @@
 // src/pages/MyEvents.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const MyEvents = () => {
   const [myEvents, setMyEvents] = useState([]);
@@ -9,18 +10,19 @@ const MyEvents = () => {
   const token = localStorage.getItem('userToken');
 
   const fetchMyEvents = () => {
-    axios.get('/api/events/signedup', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(response => {
-      setMyEvents(response.data);
-      setLoading(false);
-    })
-    .catch(err => {
-      console.error("Error fetching your events:", err);
-      setError('Failed to fetch your events.');
-      setLoading(false);
-    });
+    axios
+      .get('/api/events/signedup', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        setMyEvents(response.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error fetching your events:", err);
+        setError('Failed to fetch your events.');
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -33,17 +35,18 @@ const MyEvents = () => {
   }, [token]);
 
   const handleCancelRegistration = (eventId) => {
-    axios.delete(`/api/events/signup/${eventId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(response => {
-      alert(response.data.message || 'Registration cancelled successfully.');
-      fetchMyEvents(); // Refresh the list after deletion
-    })
-    .catch(err => {
-      console.error("Error cancelling registration:", err);
-      alert('Failed to cancel registration.');
-    });
+    axios
+      .delete(`/api/events/signup/${eventId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        alert(response.data.message || 'Registration cancelled successfully.');
+        fetchMyEvents(); 
+      })
+      .catch(err => {
+        console.error("Error cancelling registration:", err);
+        alert('Failed to cancel registration.');
+      });
   };
 
   if (loading) return <p>Loading your events...</p>;
@@ -51,6 +54,10 @@ const MyEvents = () => {
 
   return (
     <div className="container mt-5">
+      <div className="mb-3">
+        <Link to="/" className="btn btn-primary">Home</Link>
+      </div>
+      
       <h2>My Registered Events</h2>
       {myEvents.length > 0 ? (
         <ul className="list-group">

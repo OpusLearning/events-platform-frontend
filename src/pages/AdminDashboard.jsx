@@ -11,7 +11,6 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [editingEventId, setEditingEventId] = useState(null);
-  // For editing, we store date as a Date object
   const [editingEventData, setEditingEventData] = useState({
     title: '',
     date: new Date(),
@@ -53,7 +52,6 @@ const AdminDashboard = () => {
     navigate('/login');
   };
 
-  // Create event handler using the createDate state for the date picker
   const handleCreateEvent = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -120,7 +118,6 @@ const AdminDashboard = () => {
   // Save the edited event using PUT
   const handleSaveEdit = (e, id) => {
     e.preventDefault();
-    // Prepare updated event data (convert date to ISO string)
     const updatedEvent = {
       ...editingEventData,
       date: editingEventData.date.toISOString(),

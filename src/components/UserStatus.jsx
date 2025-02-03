@@ -2,7 +2,6 @@
 import React from 'react';
 import * as jwtDecodeModule from 'jwt-decode';
 
-// Use the default export if it exists, otherwise fall back to the entire module
 const jwt_decode = (jwtDecodeModule && jwtDecodeModule.default) || jwtDecodeModule;
 
 const UserStatus = () => {
@@ -15,7 +14,6 @@ const UserStatus = () => {
   try {
     const decoded = jwt_decode(token);
     console.log("Decoded token:", decoded);
-    // If no name or email is provided, fall back to using the user's ID.
     const username = decoded.name || decoded.email || `User #${decoded.id}`;
     const role = decoded.role || 'User';
 

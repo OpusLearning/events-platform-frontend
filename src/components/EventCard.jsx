@@ -37,7 +37,13 @@ const EventCard = ({ event, onSignUpSuccess }) => {
   };
 
   return (
-    <div className="card h-100">
+    <div
+      className="card h-100"
+      style={{
+        transform: 'scale(0.9)', 
+        transformOrigin: 'top left'
+      }}
+    >
       {event.imageUrl ? (
         <img src={event.imageUrl} className="card-img-top" alt={event.title} />
       ) : (

@@ -12,19 +12,15 @@ function App() {
   return (
     <div>
       <header style={{ backgroundColor: "#020333", color: "white" }} className="p-3">
-        <div className="container d-flex align-items-center">
-          {/*<img
-            src="/eventsnew.webp"
-            alt="Events Platform Logo"
-            style={{ height: '75px', marginRight: '15px' }}  
-          />*/}
-          <h1 className="mb-0" style={{ fontSize: '1.75rem' }}>
-            <span style={{ fontWeight: 'bold' }}>eventsplatform</span>
-            <span style={{ fontWeight: '300' }}>.online</span>
-          </h1>
-        </div>
+      <a href="https://eventsplatform.online" style={{ textDecoration: 'none', color: 'inherit' }}>
+  <div className="container d-flex align-items-center">
+    <h1 className="mb-0" style={{ fontSize: '1.75rem' }}>
+      <span style={{ fontWeight: 'bold' }}>eventsplatform</span>
+      <span style={{ fontWeight: '300' }}>.online</span>
+    </h1>
+  </div>
+</a>
       </header>
-
       <main className="container my-4">
         <Routes>
           <Route path="/" element={<Home />} />

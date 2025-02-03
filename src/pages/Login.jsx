@@ -17,8 +17,6 @@ const Login = () => {
         const { token, user } = response.data;
         localStorage.setItem('userToken', token);
         alert(`Welcome, ${user.name || user.email || 'User'}!`);
-
-        // Navigate based on the user's role:
         if (user.role === 'admin') {
           navigate('/admin');
         } else {

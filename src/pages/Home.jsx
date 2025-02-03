@@ -35,15 +35,12 @@ const Home = () => {
 
   return (
     <div className="container mx-auto p-4">
-      {/* Display login status on the home page */}
       <UserStatus />
-
-      {/* Header area with title and navigation buttons */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="text-2xl font-bold">Upcoming Events</h1>
         <div>
           <Link to="/login" className="btn btn-secondary me-2">
-            Staff Login
+            Login
           </Link>
           <Link to="/register" className="btn btn-outline-primary">
             Register
