@@ -87,7 +87,7 @@ The UI displays appropriate messages for successful actions and errors (e.g., "P
 
 3. **How It Meets the Project Brief**
 Responsive & Accessible Design:
-The UI is built to be responsive across various screen sizes, with clear error messaging and loading states. Accessibility considerations (such as proper alt text for images and clear button labels) have been implemented.
+The UI is built to be responsive across various screen sizes, with clear error messaging and loading states. 
 
 4. **Integration with Backend:**
 The front end fetches data from backend endpoints, supports user authentication (registration and login), and integrates with Google Calendar via the provided OAuth endpoints.
